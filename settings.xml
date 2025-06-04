@@ -1,55 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 http://maven.apache.org/xsd/settings-1.2.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.2.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<settings xmlns="http://maven.apache.org/SETTINGS/1.2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 http://maven.apache.org/xsd/settings-1.2.0.xsd">
+
   <servers>
     <server>
-      <username>admin</username>
-      <password>Admin123!</password>
       <id>central</id>
+      <username>${env.JFROG_USER}</username>
+      <password>${env.JFROG_PASS}</password>
     </server>
     <server>
-      <username>admin</username>
-      <password>Admin123!</password>
       <id>snapshots</id>
+      <username>${env.JFROG_USER}</username>
+      <password>${env.JFROG_PASS}</password>
     </server>
   </servers>
+
   <profiles>
     <profile>
+      <id>artifactory</id>
       <repositories>
         <repository>
+          <id>central</id>
+          <name>franx-libs-release</name>
+          <url>https://dangqtphong.jfrog.io/artifactory/franx-libs-release</url>
           <snapshots>
             <enabled>false</enabled>
           </snapshots>
-          <id>central</id>
-          <name>libs-release</name>
-          <url>https://edshopdpt8.jfrog.io/artifactory/libs-release</url>
         </repository>
         <repository>
-          <snapshots />
           <id>snapshots</id>
-          <name>libs-snapshot</name>
-          <url>https://edshopdpt8.jfrog.io/artifactory/libs-snapshot</url>
+          <name>franx-libs-snapshot</name>
+          <url>https://dangqtphong.jfrog.io/artifactory/franx-libs-snapshot</url>
+          <snapshots />
         </repository>
       </repositories>
       <pluginRepositories>
         <pluginRepository>
+          <id>central</id>
+          <name>franx-libs-release</name>
+          <url>https://dangqtphong.jfrog.io/artifactory/franx-libs-release</url>
           <snapshots>
             <enabled>false</enabled>
           </snapshots>
-          <id>central</id>
-          <name>libs-release</name>
-          <url>https://edshopdpt8.jfrog.io/artifactory/libs-release</url>
         </pluginRepository>
         <pluginRepository>
-          <snapshots />
           <id>snapshots</id>
-          <name>libs-snapshot</name>
-          <url>https://edshopdpt8.jfrog.io/artifactory/libs-snapshot</url>
+          <name>franx-libs-snapshot</name>
+          <url>https://dangqtphong.jfrog.io/artifactory/franx-libs-snapshot</url>
+          <snapshots />
         </pluginRepository>
       </pluginRepositories>
-      <id>artifactory</id>
     </profile>
   </profiles>
+
   <activeProfiles>
     <activeProfile>artifactory</activeProfile>
   </activeProfiles>
